@@ -10,15 +10,14 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
 public class RetryListener implements IAnnotationTransformer {
-
-/*    @Override
+    @Override
     public void transform(ITestAnnotation annotation, Class testClass, Constructor testConstructor, Method testMethod) {
         IRetryAnalyzer retry = annotation.getRetryAnalyzer();
         ignoreTest(annotation, ReflectionHelper.findAnnotation(testClass, Ignore.class));
         if (retry == null) {
             annotation.setRetryAnalyzer(Retry.class);
         }
-    }*/
+    }
 
     private static void ignoreTest(ITestAnnotation annotation, Ignore ignore) {
         if (ignore == null) {
@@ -39,10 +38,5 @@ public class RetryListener implements IAnnotationTransformer {
             ignoredDescription = ignore.value() + ": " + annotation.getDescription();
         }
         annotation.setDescription(ignoredDescription);
-    }
-
-    @Override
-    public void transform(ITestAnnotation annotation, Class testClass, Constructor testConstructor, Method testMethod) {
-
     }
 }

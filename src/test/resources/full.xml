@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="All">
-    <test thread-count="4" parallel="methods" name="All">
-        <packages>
-            <package name="src/test/java.*"/>
-        </packages>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="suite" verbose="1" >
+    <listeners>
+        <listener class-name="utils.analyzer.RetryListener"/>
+    </listeners>
+    <test thread-count="4" parallel="methods" name="Regression">
+        <classes>
+            <class name="testAnnotation.MainPageTest"/>
+        </classes>
     </test>
 </suite>
+

@@ -3,7 +3,6 @@ package base;
 import Interfaces.SaveData;
 import actions.Action;
 import Interfaces.ProjectConfig;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import database.PGBase;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -19,10 +18,6 @@ import io.qameta.allure.selenide.AllureSelenide;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.logging.Logger;
-
-import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.webdriver;
-import static org.testng.Assert.assertEquals;
 
 public class BaseTest implements SaveData {
     public static final Logger LOGGER = Logger.getLogger("TEST LOGGER");
@@ -91,7 +86,7 @@ public class BaseTest implements SaveData {
         MAIN_PAGE = new MainPage();
     }
 
-    @AfterTest
+    @AfterMethod
     protected void teardown() {
         WebDriverRunner.getWebDriver().quit();
     }

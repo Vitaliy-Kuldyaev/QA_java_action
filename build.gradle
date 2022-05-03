@@ -37,6 +37,8 @@ dependencies {
     implementation('org.testng:testng:' + testng_version)
     implementation('com.codeborne:selenide:' + selenide_version)
     implementation('io.qameta.allure:allure-selenide:' + allure_version)
+    implementation group: 'io.qameta.allure', name: 'allure-testng', version: '2.17.3'
+    runtimeOnly group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.9.1'
     testImplementation('io.github.bonigarcia:webdrivermanager:4.4.3')
     testImplementation('org.assertj:assertj-core:3.21.0')
     implementation group: 'org.javalite', name: 'activejdbc', version: '3.1-j11'
@@ -53,18 +55,11 @@ test {
     testLogging{
         showStandardStreams = true
     }
-    reports.html.enabled = false
+    reports.html.enabled = true
     ignoreFailures = true
+    //testLogging.showStandardStreams = true
     useTestNG() {
         useDefaultListeners = true
         suites "src/test/resources/$testFile"
-    }
-}
-allure {
-    autoconfigure = true
-    version = "${allure_version}"
-
-    useTestNG {
-        version = "${allure_version}"
     }
 }

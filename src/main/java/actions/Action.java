@@ -6,6 +6,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
 import org.testng.Assert;
+import utils.steps.Steps;
 
 import static base.BaseTest.idThread;
 
@@ -29,7 +30,7 @@ public class Action implements SaveData {
         return this;
     }
 
-    @Step("Проверка \"{se}\" на {condition}")
+    @Step("Cохранение промежуточных данных \"{value}\" в \"{key}\"")
     public Action save(String value, String key) {
         SaveData.save(idThread.get(),key,value);
         return this;
@@ -38,6 +39,11 @@ public class Action implements SaveData {
     @Step("Проверка Equals")
     public Action assertEquals(Object in, Object out) {
         Assert.assertEquals(in,out);
+        return this;
+    }
+
+    @Step("Проверка Equals")
+    public Action step(Steps steps)  {
         return this;
     }
 }

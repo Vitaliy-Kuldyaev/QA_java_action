@@ -3,12 +3,18 @@ package actions;
 import Interfaces.SaveData;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
 import org.testng.Assert;
 
 import static base.BaseTest.idThread;
 
 public class Action implements SaveData {
+
+    public Action open(String url) {
+        WebDriverRunner.getWebDriver().get(url);
+        return this;
+    }
 
     public Action click(SelenideElement se) {
         //se.shouldBe(visible).click();

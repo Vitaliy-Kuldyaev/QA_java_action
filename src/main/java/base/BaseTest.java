@@ -25,7 +25,7 @@ public class BaseTest implements SaveData {
     public MainPage MAIN_PAGE;
     public Action ACTIONS_;
     public ProjectConfig config;
-    public ThreadLocal<Long> idThread = new ThreadLocal<>();
+    public static ThreadLocal<Long> idThread = new ThreadLocal<>();
     @BeforeSuite
     public void setProjectVariable() {
         //Injector.inject(this) ;

@@ -1,0 +1,1 @@
+{"uuid":"fd9133e8-77b6-47a5-9280-a8dc8d83eb44","name":"testAnnotation.MainPageTest","children":["714c4cad-e10a-4f16-acdb-c8c9b0aa920f"],"befores":[{"name":"setUpAll","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1651440307005,"stop":1651440307067}],"afters":[],"start":1651440306939,"stop":1651440326161}

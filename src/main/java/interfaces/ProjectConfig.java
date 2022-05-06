@@ -1,9 +1,7 @@
-package Interfaces;
+package interfaces;
 
 import annotations.Key;
 import annotations.Source;
-
-import java.lang.reflect.Field;
 
 @Source("classpath:config.properties")
 public interface ProjectConfig {

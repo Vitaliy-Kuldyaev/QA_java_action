@@ -1,10 +1,10 @@
 package base;
 
 import actions.Action;
-import Interfaces.ProjectConfig;
+import interfaces.ProjectConfig;
 import com.codeborne.selenide.WebDriverRunner;
 import database.PGBase;
-import io.github.bonigarcia.wdm.WebDriverManager;
+import listeners.TestListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -13,15 +13,14 @@ import page.MainPage;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
-import utils.saveData.SaveDataInThread;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.logging.Logger;
-import stands.Stands;
 
+@Listeners(TestListener.class)
 public class BaseTest {
     public static final Logger LOGGER = Logger.getLogger("TEST LOGGER");
     public static final PGBase DB = new PGBase();

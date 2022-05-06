@@ -1,9 +1,8 @@
-package utils.steps.Group;
+package steps.Group;
 
 import actions.Action;
 
 import page.MainPage;
-import utils.steps.Steps;
 
 public class MainPageSteps extends Steps {
 

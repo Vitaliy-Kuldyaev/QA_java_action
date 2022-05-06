@@ -1,17 +1,22 @@
 package actions;
 
-import Interfaces.SaveData;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
 import org.testng.Assert;
-import utils.steps.Steps;
+import steps.Group.Steps;
+import utils.saveData.SaveDataInThread;
 
-import static base.BaseTest.idThread;
+public class Action {
 
-public class Action implements SaveData {
+    @Step("Авторизация на стенде")
+    public Action authorise(String user) {
+        return this;
+    }
 
+    @Step("Открытие страницы \"{url}\"")
     public Action open(String url) {
         WebDriverRunner.getWebDriver().get(url);
         return this;
@@ -32,7 +37,7 @@ public class Action implements SaveData {
 
     @Step("Cохранение промежуточных данных \"{value}\" в \"{key}\"")
     public Action save(String value, String key) {
-        SaveData.save(idThread.get(),key,value);
+        SaveDataInThread.saveValue(key,value);
         return this;
     }
 
@@ -44,6 +49,15 @@ public class Action implements SaveData {
 
     @Step("Проверка Equals")
     public Action step(Steps steps)  {
+        return this;
+    }
+
+    public Action wait(int time) {
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return this;
     }
 }

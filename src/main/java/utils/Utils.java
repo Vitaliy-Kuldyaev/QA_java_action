@@ -2,7 +2,9 @@ package utils;
 
 
 import base.BaseTest;
+import io.qameta.allure.Step;
 import stands.Stands;
+import utils.saveData.SaveDataInThread;
 
 import java.util.List;
 import java.util.Map;
@@ -19,5 +21,10 @@ public class Utils extends BaseTest {
         List<Map> result = DB.findAll(query);
         DB.disconnect();
         return result;
+    }
+
+    @Step("Получение промежуточных данных по ключу \"{key}\"")
+    public static String getSave(String key) {
+        return SaveDataInThread.getSaveValue(key);
     }
 }

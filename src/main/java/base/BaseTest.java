@@ -1,6 +1,5 @@
 package base;
 
-import Interfaces.SaveData;
 import actions.Action;
 import Interfaces.ProjectConfig;
 import com.codeborne.selenide.WebDriverRunner;
@@ -14,22 +13,25 @@ import page.MainPage;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
+import utils.saveData.SaveDataInThread;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.nio.file.Paths;
+import java.time.Duration;
 import java.util.logging.Logger;
+import stands.Stands;
 
-public class BaseTest implements SaveData {
+public class BaseTest {
     public static final Logger LOGGER = Logger.getLogger("TEST LOGGER");
     public static final PGBase DB = new PGBase();
     public MainPage MAIN_PAGE;
     public Action ACTIONS_;
     public ProjectConfig config;
-    public static ThreadLocal<Long> idThread = new ThreadLocal<>();
 
     @BeforeSuite
     public void setProjectVariable() {
-        WebDriverManager.chromedriver().setup();
+        //WebDriverManager.chromedriver().setup();
         //Injector.inject(this) ;
         Field[] fields = this.getClass().asSubclass(this.getClass()).getDeclaredFields();
         for(Field field : fields) {
@@ -53,17 +55,19 @@ public class BaseTest implements SaveData {
 
     @BeforeMethod
     protected void setUp(Method method) {
-        // ThreadLocal variable for method ACTION.save
-        idThread.set(System.currentTimeMillis());
         ProjectConfig config;
         //System.out.println(config.appUrl().toString());
         //assertEquals(config.appUrl(),"http:\\\\ya.ru" );
 
         // WebDriver activate
+        Configuration.timeout = Duration.ofSeconds(60).toMillis();
+        Configuration.browserBinary = "C:/Program Files/Google/Chrome/Application/chrome.exe";
+        System.setProperty("webdriver.chrome.driver", Paths.get("chromedriver.exe").toAbsolutePath().toString());
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-web-security");
         options.addArguments("--allow-running-insecure-content");
         options.addArguments("--ignore-certificate-errors");
+
         WebDriver driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         WebDriverRunner.setWebDriver(driver);

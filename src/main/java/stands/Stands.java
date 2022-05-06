@@ -2,14 +2,15 @@ package stands;
 
 public enum Stands {
     teststand(
-            "gaussuapp201lv",
-            System.getenv("database_port") != null ? Integer.valueOf(System.getenv("database_port")) :
-                    Integer.valueOf(System.getProperty("database_port")),
-            "gaussuapp201lv",
-            "dm2",
-            "nwvtb",
-            "2wsx#EDC",
-            "http://gaussuapp201lv/"
+            "testStand",
+            4444,
+//            System.getenv("database_port") != null ? Integer.valueOf(System.getenv("database_port")) :
+//                    Integer.valueOf(System.getProperty("database_port")),
+            "testStand",
+            "test",
+            "test",
+            "qwe",
+            "https://www.jetbrains.com/"
     );
 
     private final String host;
